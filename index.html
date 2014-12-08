@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Game of Thrones|From the River</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="jquery-1.11.1.min.js"></script>
+    <link href="stilo.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet' type='text/css'>
+    <link rel="icon" type="image/png" href="cuervo.png" />
+
+</head>
+
+<body>
+    <div id="container">
+
+        <img id="abajo" src="down_arrow1.png">
+        <img id="arriba" src="up_arrow1.png">
+        <img id="derecha" src="right_arrow1.png">
+        <img id="izquierda" src="left_arrow1.png">
+        <img id="centro" src="add.png">
+
+        <div class="form add  mover">
+            <section class="ancho">
+                <form class="formulario">
+                    <input type="text" class="form-control name" placeholder="Name" name="name">
+                    <textarea class="form-control" rows="6" placeholder="Description" name="description"></textarea>
+                    <label>Select a house of your Characther</label>
+                    <select name="house" form="house">
+                        <option value="Stark">Stark</option>
+                        <option value="Lannister">Lannister</option>
+                        <option value="Baratheon">Baratheon</option>
+                        <option value="Targaryen">Targaryen</option>
+                        <input type="text" class="form-control name" placeholder="Url of image" name="img">
+                        <button class="btn btn-lg btn-success btn-block" type="submit" onclick="return false">Insert</button>
+                </form>
+            </section>
+        </div>
+
+        <audio class="sonido" controls>
+            <source src="bso.mp3" type="audio/mp3" />
+        </audio>
+
+
+
+    </div>
+
+    <script>
+        var juego_tronos = {
+            diapositivas: 0,
+            Stark: {},
+            Lannister: {},
+            Baratheon: {},
+            Targaryen: {}
+            /*Arryn: {},
+            Tyrell: {}*/
+            //Es posible añadir más casas pero consideraba que eran demasiadas, pero funcionan
+        };
+
+        function añadeDiapositivas(objeto, nombre, descripcion, foto, casa) {
+            objeto["diapositivas"]++;
+            //console.log(objeto[casa]);
+            objeto[casa]["Diapositiva" + objeto["diapositivas"]] = {
+                Nombre: nombre,
+                Descripcion: descripcion,
+                Foto: foto
+            };
+        }
+         //       ------------------------------------------- Stark
+        añadeDiapositivas(juego_tronos, "Eddard Stark <br>", "A stoic, duty-bound and honorable lord, Ned Stark embodies the values of the northern realm over which he rules. Seventeen years ago, he left his home to rise up against the Mad King Aerys Targaryen fighting alongside his longtime friend Robert Baratheon who took control of the throne after the war.<br><br> As Warden of the North, Ned returned to Winterfell with his bastard son, Jon Snow.", "stark/ned.jpg", "Stark");
+
+        añadeDiapositivas(juego_tronos, "Jon Snow <br>", "Jon Snow is the bastard son of Eddard Stark, by a mother whose identity is a source of speculation.<br><br> He was raised by his father alongside his true-born half-siblings, but joins the Night's Watch when he nears adulthood. He is constantly accompanied by his albino direwolf Ghost. At the beginning of A Game of Thrones, Jon is fourteen years old. ", "stark/jon-nieve.jpg", "Stark");
+        añadeDiapositivas(juego_tronos, "Rob Stark", "As the oldest Stark son, Robb is heir to Winterfell and very aware of the responsibilities that come with his title.<br><br>Despite being the house's most important son, Robb has a close relationship with his bastard half-brother,Jon Snow and is on good terms with Theon Greyjoy his father's ward from the Iron Islands  His direwolf is named Grey Wind.", "stark/Robb-stark.jpg", "Stark");
+
+         //----------------------------------------------------Lannister
+        añadeDiapositivas(juego_tronos, "Tywin Lannister", "The former Hand of the King to Aerys Targaryen and the richest man in Westeros, Tywin was considered a threat by the Mad King, who did his best to stymie him.<br><br>Although now grown, Tywin's children are still in awe of him and defer to his counsel.<br><br> His wife Joanna died giving birth to Tyrion.", "lannister/tywin.jpg", "Lannister");
+        añadeDiapositivas(juego_tronos, "Cersei Lannister", "Cersei Baratheon is the only daughter of Tywin Lannisterformer Hand of the King and the richest man in the Seven Kingdoms. Her father had initially hoped to marry her to Rhaegar Targaryen but that offer was refused by the Mad King Aerys.<br><br>She is the wife of Robert Baratheon and mother of his three children. While she is close with her twin she can barely tolerate her brother.", "lannister/cersei.jpg", "Lannister");
+        añadeDiapositivas(juego_tronos, "Jaime Lannister", "Jaime is the twin brother of Queen Cersei.A celebrated knight and member of the Kingsguard, he violated his oath to protect the royal family when he slew the Mad King.Ever since, his reputation as 'The Kingslayer' has dogged him.", "lannister/jaime.jpg", "Lannister");
+
+
+         //----------------------------------------------------Baratheon 
+        añadeDiapositivas(juego_tronos, "Robert Baratheon", "The reigning King of Westeros, Robert Baratheon won his title 17 years ago when he took the throne away from Aerys Targaryen known as the Mad King.<br> With help from his childhood friend Ned Stark Robert led a rebellion against the Mad King after Rhaegar Targaryen kidnapped his fiancée, Lyanna Stark.It is no secret that these days, Robert's interests lean more towards whoring and drinking and less to governing.", "baratheon/robert.jpg", "Baratheon");
+        añadeDiapositivas(juego_tronos, "Stannis Baratheon", "One of Robert Baratheon two younger brothers, Stannis is never seen at court, although he serves as Master of Ships on the Small Council. A serious man, Stannis prefers to remain at Dragonstone the former Targaryen stronghold that he was awarded after Robert's Rebellion", "baratheon/stannis.jpg", "Baratheon");
+        añadeDiapositivas(juego_tronos, "Renly Baratheon", "The youngest of the three Baratheon brothers, Renly's keen fashion sense and friendly style contribute to his popularity at court. In King's Landing he serves as his brother's Master of Laws, and pays greater attention to affairs of the state than his brother does.", "baratheon/renly.jpg", "Baratheon");
+         //---------------------------------------------------Targaryen      
+        añadeDiapositivas(juego_tronos, "Aerys II Targaryen", "The last of the Targaryens to reign, Aerys was known as the Mad King due to his unpredictable temper. Instead of ransoming and his companions to their fathers as he'd promised, Aerys murdered everyone in full sight of his court, thus inciting  and Robert Baratheon to take up arms against him.", "targaryen/targaryen.jpg", "Targaryen");
+        añadeDiapositivas(juego_tronos, "Viserys Targaryen", "The only surviving male heir of House Targaryen Viserys was sent with his newborn sister to Essos to live in safety. He lives in exile with his sister Daenerys and is obsessed with retaking his family's throne.", "targaryen/viserys.jpg", "Targaryen");
+        añadeDiapositivas(juego_tronos, "Daenerys Targaryen", "Princess of House Targaryen and exiled to Essos, Daenerys knows nothing of Westeros except what she learns from her brother, The last two surviving Targaryens, they fled to Essos after the Mad King Aerys was killed during Robert's Rebellion.<br><br>Dany wed Khal Drogo to help her brother retake the Iron Throne", "targaryen/daenerys.jpg", "Targaryen");
+        /*
+//----------------------------------------------------Arryn
+        añadeDiapositivas(juego_tronos, "Jonh Arryn", "Mano del Rey", "stark/ned.jpg", "Arryn");
+        añadeDiapositivas(juego_tronos, "Jonh Arryn", "Mano del Rey", "stark/ned.jpg", "Arryn");
+        añadeDiapositivas(juego_tronos, "Jonh Arryn", "Mano del Rey", "stark/ned.jpg", "Arryn");
+//----------------------------------------------------Tyrell
+        añadeDiapositivas(juego_tronos, "La vieja chocha", "Jardin de flores", "stark/ned.jpg", "Tyrell");
+        añadeDiapositivas(juego_tronos, "La vieja chocha", "Jardin de flores", "stark/ned.jpg", "Tyrell");
+        añadeDiapositivas(juego_tronos, "La vieja chocha", "Jardin de flores", "stark/ned.jpg", "Tyrell");
+
+Personajes de las casas eliminadas */
+
+//Aqui comienzo a meter los objetos
+        var miDiv;
+        $.each(juego_tronos, function (casa, personajes) {
+            switch (casa) {
+
+            case "diapositivas":
+                break;
+            default:
+                miDiv = $("<div class='slide mover'><section class='ancho " + casa + "'></section></div>");
+                $('#container').append(miDiv);
+                break;
+
+            }
+            // if (typeof diapoNumber === "object") {
+            $.each(personajes, function (diapoNumber, datos) {
+                console.log(datos);
+
+                $.each(datos, function (indice, valor) {
+                    //  console.log(indice);
+                    //  console.log(valor);
+
+//append hijo despues
+//prepend hijo antes
+//after hermano despues
+//before hermano antes
+                    switch (indice) {
+                    case "Nombre":
+                        miDiv.append("<section class='ancho " + casa + "'><div class='texto'></div></section>");
+                        $('.texto').last().append("<h1>" + valor + "</h1>");
+                        break;
+                    case "Descripcion":
+                        $('.texto').last().append("<p class='descripcion'>" + valor + "</p>");
+                        break;
+                    case "Foto":
+                        $('.ancho').last().append("<div class='images'><img class='foto 'src='" + valor + "'></div>");
+                        break;
+                    default:
+                        break;
+                    }
+                });
+
+            });
+
+            // }
+
+        });
+
+         //----------------------------Función del formulario
+      
+
+
+        var name;
+        var descripcion;
+        var img;
+        var casa;
+
+        $('button').on("click", function () {
+
+            name = $('input:text[name=name]').val();
+            descripcion = $('textarea').val();
+            img = $('input:text[name=img]').val();
+            casas = $('select[name=house]').val();
+            alert("Character introduced with success ");
+            
+            añadeDiapositivas(juego_tronos, name, descripcion, img, casas);
+           
+            $('.slide').remove();
+
+            var miDiv;
+            $.each(juego_tronos, function (casa, personajes) {
+                switch (casa) {
+
+                case "diapositivas":
+                    break;
+                default:
+                    miDiv = $("<div class='slide mover'><section class='ancho " + casa + "'></section></div>");
+                    $('#container').append(miDiv);
+                    break;
+
+                }
+
+                $.each(personajes, function (diapoNumber, datos) {
+                    console.log(datos);
+
+                    $.each(datos, function (indice, valor) {
+
+                        switch (indice) {
+                        case "Nombre":
+                            miDiv.append("<section class='ancho " + casa + "'><div class='texto'></div></section>");
+                            $('.texto').last().append("<h1>" + valor + "</h1>");
+                            break;
+                        case "Descripcion":
+                            $('.texto').last().append("<p class='descripcion'>" + valor + "</p>");
+                            break;
+                        case "Foto":
+                            $('.ancho').last().append("<div class='images'><img class='foto'src='" + valor + "'></div>");
+                            break;
+                        default:
+                            break;
+                        }
+                    });
+
+                });
+
+
+            });
+
+                // Tamaño responsive a los nuevos objetos despues de su eliminacion y posterior creacion
+
+                var n = $(".mover").length;
+                var j = $(".ancho").length;
+                $("#container").css("height", n * 100 + "%");
+                $(".mover").css("width", 100 + "%");
+                $(".mover").css("height", 100 / n + "%");
+                $("#container").css("width", j * 100 + "%");
+                $(".ancho").css("width", 100 / j + "%");
+                $(".ancho").css("height", 100 + "%");
+
+        });
+        
+
+         //Damos funcionalidad a las flechas con el metodo click
+        var i = 1;
+        var z = 1;
+        var ancho = $(window).width();
+        var mover;
+        //var count_Stark = $(".Stark").length;
+
+
+        $("#abajo").on("click", function (event) {
+            $("html, body").animate({
+                scrollTop: $(".mover").eq(i).offset().top
+            }, 800);
+            event.preventDefault();
+            i++;
+        });
+
+        $("#arriba").on("click", function () {
+            if (i != 1 ) {
+                i--;
+                $("html, body").animate({
+                    scrollTop: $(".mover").eq(i - 1).offset().top
+                }, 800);
+            }
+        });
+        $("#derecha").on("click", function () {//Se limita al usuario a que solo pueda avanzar 6 veces a derecha para que cuando cree nuevos personajes los vea ( no vera mas de 3 nuevos x familia)
+            console.log(z);
+            if (z <=6  && i>=2) {
+                mover = ancho * z;
+                $("html, body").animate({
+                    scrollLeft: mover
+                }, 800);
+                z++;
+            }else if(z >=1 && i==1){
+                mover = (mover - ancho * z);
+                $("html, body").animate({
+                    scrollLeft: mover
+                }, 800);
+                z=1;
+            }
+            
+            
+        });
+        $("#izquierda").on("click", function () {
+            if ((z >= 2 && z<=7 )&& i !=1) {
+                mover = (mover - ancho);
+                $("html, body").animate({
+                    scrollLeft: mover
+                }, 800);
+                z--;
+            }else if(z >=1 && i==1){
+                mover = (mover - ancho * z);
+                $("html, body").animate({
+                    scrollLeft: mover
+                }, 800);
+                z=1;
+            }
+        });
+        $("#centro").on("click", function () {
+            if(i<=5){
+                mover = (mover - ancho * z);
+                $("html, body").animate({
+                    scrollLeft: mover,
+                    scrollTop: $(".mover").eq(i - i).offset().top
+                }, 400);
+
+                z=1;
+                i=1;
+            }
+            
+        });
+         //Si pulsamos la tecla llmamos a la funcion abajo
+
+
+        $("body", "html").on("keyup", function (event) {
+
+            //console.log(event.keyCode);
+            switch (event.keyCode) {
+            case 40:
+                $("#abajo").click();
+                break;
+            case 38:
+                $("#arriba").click();
+                break;
+            case 39:
+                $("#derecha").click();
+                break;
+            case 37:
+                $("#izquierda").click();
+                break;
+            default:
+                break;
+            }
+        });
+
+
+
+         //Da el tamaño 100% a las secciones
+        var n = $(".mover").length;
+        var j = $(".ancho").length;
+        $("#container").css("height", n * 100 + "%");
+        $(".mover").css("width", 100 + "%");
+        $(".mover").css("height", 100 / n + "%");
+        $("#container").css("width", j * 100 + "%");
+        $(".ancho").css("width", 100 / j + "%");
+        $(".ancho").css("height", 100 + "%");
+
+
+         //Reproduce sonido automatico
+        $(".sonido")[0].play();
+    </script>
+
+</body>
+
+</html>
